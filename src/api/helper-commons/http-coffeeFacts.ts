@@ -6,3 +6,9 @@ const CoffeeFactsHTTP = axios.create({
         "Content-Type": "application/json"
     }
 })
+
+const Request = {
+    CoffeeFactsHTTP
+}
+
+export default Request
