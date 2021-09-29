@@ -1,10 +1,13 @@
 import React from 'react';
-
+import Main from './components/Main';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-    </div>
+    <main>
+      <section>
+          <Main/>
+      </section>
+    </main>
   );
 }
 
