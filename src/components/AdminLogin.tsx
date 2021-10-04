@@ -7,7 +7,8 @@ const AdminLogin: React.FC = () => {
     //when logged in redirects to reviews page for admin ready to approve or reject a fact. (fact and approve/reject/edit?)
     //admin can see all facts that are approved and must be protected routes.
 
-    return (<div>
+    return (
+    <div>
         AdminLogin
     </div>)
 }
