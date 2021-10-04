@@ -3,10 +3,8 @@ import Main from './components/Main';
 
 const App: React.FC = () => {
   return (
-    <main>
-      <section>
+    <main className="d-flex justify-content-center">
           <Main/>
-      </section>
     </main>
   );
 }
