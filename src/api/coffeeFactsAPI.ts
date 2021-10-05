@@ -1,5 +1,6 @@
 import Request from "./helper-commons/http-coffeeFacts";
 
+//add interface for CoffeeFacts
 class CoffeeFacts {
     static async getAllCoffeeFacts(){
         const getAllFacts = await Request.CoffeeFactsHTTP.get('/coffee/api/facts')
