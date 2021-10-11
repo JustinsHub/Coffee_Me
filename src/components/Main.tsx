@@ -32,11 +32,7 @@ const Main: React.FC = () => {
             return error
         }
     }
-        //put coffee fact in the middle
-        //button in the middle
-        //put in useeffect after implemention of coffeefunction
-        //new fact renders input
-        //random fact renders just 1 fact from DB
+       
     return (
         <div>
             Coffee Facts:
