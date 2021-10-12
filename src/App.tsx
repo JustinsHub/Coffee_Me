@@ -1,10 +1,11 @@
 import React from 'react';
 import Main from './components/Main';
+import Routes from './components/Routes';
 
 const App: React.FC = () => {
   return (
-    <main className="d-flex justify-content-center">
-          <Main/>
+    <main>
+          <Routes/>
     </main>
   );
 }

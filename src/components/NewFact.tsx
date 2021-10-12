@@ -16,6 +16,7 @@ const NewFact: React.FC = () =>{
         setNewCoffeeFact((coffee) => ({...coffee, [name]:value })
         )}
 
+        //When submitted, renders UI for submission "Your fact has been submitted and waiting for review"
     const handleSubmit = async(e:SyntheticEvent) => {
         e.preventDefault()
         try {

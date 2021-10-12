@@ -34,7 +34,7 @@ const Main: React.FC = () => {
     }
        
     return (
-        <div>
+        <div className="d-flex justify-content-center">
             Coffee Facts:
             <ul>
                 {coffeeFact}
