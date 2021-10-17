@@ -1,7 +1,9 @@
 import React from "react";
 import  {Switch, Route} from 'react-router-dom'
 import AdminLogin from "./AdminLogin";
+import RegisterLogin from "./AdminRegister";
 import Main from "./Main";
+import NotFound from "./NotFound";
 
 //Make Routes just for admin login/
 //Admin login redirected to AdminPage
@@ -15,8 +17,16 @@ const Routes:React.FC = () => {
                     <AdminLogin/>
                 </Route>
 
+                <Route exact path="/admin-register">
+                    <RegisterLogin/>
+                </Route>
+
                 <Route exact path ="/">
                     <Main/>
+                </Route>
+                
+                <Route>
+                    <NotFound/>
                 </Route>
             </Switch>
         </div>

@@ -1,7 +1,7 @@
 import React from "react";
 
 const AdminLogin: React.FC = () => {
-    //must be a secret way to login admin // make it a protected route.
+    //must be a secret way to login admin // make it a protected route by password?
     //create register
     //create login
     //when logged in redirects to reviews page for admin ready to approve or reject a fact. (fact and approve/reject/edit?)
@@ -9,7 +9,21 @@ const AdminLogin: React.FC = () => {
 
     return (
     <div>
-        AdminLogin
+        <form>
+            <h1>Login</h1>
+            <label>Username:</label>
+            <input
+            type="text"
+            name=""
+            value=""
+            />
+            <label>Password:</label>
+            <input
+            type="text"
+            name=""
+            value=""
+            />
+        </form>
     </div>)
 }
 
