@@ -1,5 +1,4 @@
 import React from 'react';
-import Main from './components/Main';
 import Routes from './components/Routes';
 
 const App: React.FC = () => {
