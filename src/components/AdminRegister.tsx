@@ -2,6 +2,12 @@ import React, {ChangeEvent, useState} from "react";
 import { useHistory } from "react-router";
 import AdminAuth from "../api/adminAuth";
 
+
+interface AdminI {
+    username: string,
+    password: string
+}
+
 const RegisterLogin: React.FC = () => {
     const history = useHistory()
     const INITIAL_DATA = {
@@ -10,7 +16,7 @@ const RegisterLogin: React.FC = () => {
     }
 
     const [formData, setFormData] = useState(INITIAL_DATA)
-    const [registerError, setRegisterError] = useState([])
+    const [registerError, setRegisterError] = useState([]) //create UI error when error
 
     const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target
@@ -19,11 +25,12 @@ const RegisterLogin: React.FC = () => {
 
     const handleSubmit = async(e: React.SyntheticEvent) => {
         e.preventDefault()
-        const registerAdmin:any = await AdminAuth.registerAdmin(formData)
+        const registerAdmin: AdminI | any = await AdminAuth.registerAdmin(formData) //correct datatype?
         //redirect page to review page from here is successfully registered
-        console.log(registerAdmin.data) //create token from here?
-        
-        
+        // console.log(registerAdmin.headers) //create token from here?
+        // console.log(registerAdmin.data) //create token from here?
+        console.log(registerAdmin)
+        return (registerAdmin.status === 201) ? history.push('/') : setRegisterError(registerAdmin.response.data.error.message)
     }
 
     return (
@@ -32,21 +39,24 @@ const RegisterLogin: React.FC = () => {
     <div>
         <form onSubmit={handleSubmit}>
             <h1>Register</h1>
-            <label>Username:</label>
-            <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            />
-            <label>Password:</label>
-            <input
-            type="text"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            />
-            <button>Register</button>
+            {registerError && registerError}
+            <div>
+                <label>Username:</label>
+                    <input
+                    type="text"
+                    name="username"
+                    value={formData.username}
+                    onChange={handleChange}
+                    />
+                <label>Password:</label>
+                    <input
+                    type="text"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    />
+                <button>Register</button>
+            </div>
         </form>
     </div>)
 }
