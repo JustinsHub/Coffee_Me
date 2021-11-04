@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useState} from "react";
 import { useHistory } from "react-router";
 import AdminAuth from "../api/adminAuth";
+import useLocalStorage from "../custom-hooks/useLocalStorage";
 
 
 interface AdminI {
@@ -17,6 +18,7 @@ const RegisterLogin: React.FC = () => {
 
     const [formData, setFormData] = useState(INITIAL_DATA)
     const [registerError, setRegisterError] = useState([]) //create UI error when error
+    const [token, setToken]:any = useLocalStorage("token")
 
     const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target
@@ -25,12 +27,14 @@ const RegisterLogin: React.FC = () => {
 
     const handleSubmit = async(e: React.SyntheticEvent) => {
         e.preventDefault()
-        const registerAdmin: AdminI | any = await AdminAuth.registerAdmin(formData) //correct datatype?
-        //redirect page to review page from here is successfully registered
-        // console.log(registerAdmin.headers) //create token from here?
-        // console.log(registerAdmin.data) //create token from here?
+        const registerAdmin: AdminI | any = await AdminAuth.registerAdmin(formData) //correct datatype? must have passed down token?
+        if(registerAdmin.data){
+            setToken(registerAdmin.data.accessToken)
+        }
+        // store token in local storage and pass it on http
         console.log(registerAdmin)
-        return (registerAdmin.status === 201) ? history.push('/') : setRegisterError(registerAdmin.response.data.error.message)
+        console.log(token)
+        return (registerAdmin.status === 201) ? history.push('/admin-register') : setRegisterError(registerAdmin.response.data.error.message)
     }
 
     return (
@@ -58,7 +62,9 @@ const RegisterLogin: React.FC = () => {
                 <button>Register</button>
             </div>
         </form>
-    </div>)
+        {token}
+    </div>
+    )
 }
 
 export default RegisterLogin
