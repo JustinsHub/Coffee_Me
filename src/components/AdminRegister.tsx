@@ -11,6 +11,7 @@ interface AdminI {
 
 const RegisterLogin: React.FC = () => {
     const history = useHistory()
+    const adminToken:string = "token"
     const INITIAL_DATA = {
         username: "",
         password: ""
@@ -18,7 +19,7 @@ const RegisterLogin: React.FC = () => {
 
     const [formData, setFormData] = useState(INITIAL_DATA)
     const [registerError, setRegisterError] = useState([]) //create UI error when error
-    const [token, setToken]:any = useLocalStorage("token")
+    const [token, setToken]:any = useLocalStorage(adminToken)
 
     const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target
@@ -34,7 +35,7 @@ const RegisterLogin: React.FC = () => {
         // store token in local storage and pass it on http
         console.log(registerAdmin)
         console.log(token)
-        return (registerAdmin.status === 201) ? history.push('/admin-register') : setRegisterError(registerAdmin.response.data.error.message)
+        return (registerAdmin.status === 201) ? history.push('/') : setRegisterError(registerAdmin.response.data.error.message)
     }
 
     return (
